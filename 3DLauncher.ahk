@@ -27,14 +27,14 @@ Process,Exist, Start3D.exe
 If !ErrorLevel
 {
       
-    try
+        try
 	{
-	    Run, "Start3D.exe"
+	       Run, "Start3D.exe"
 	}
 	catch
 	{
-       MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, Start3D.exe could not be started, file may be corrupted.
-       exitApp 
+               MsgBox,262144 , Failed to initialize 3D Vision for DX12, Start3D.exe could not be started, file may be corrupted.
+               exitApp 
 	}   
    
 
@@ -48,7 +48,7 @@ If !ErrorLevel
    ;If 3dfix manager is running, is expected to start the 3D process.We are waiting for the process to be completed to turn off 3d
    IfWinExist, 3D Fix Manager   
    {
-	   Sleep, 8000
+     Sleep, 8000
    }
    
    
@@ -75,10 +75,10 @@ If !ErrorLevel
    
    if ErrorLevel
    {
-		MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, There is a problem. SOTTR or Steam started too late. Please try again now.
-		Runwait, taskkill /im SOTTR.exe /f, ,Hide
-	    Runwait, taskkill /im Start3D.exe /f, ,Hide		
-		ExitApp  
+	  MsgBox,262144 , Failed to initialize 3D Vision for DX12, There is a problem. SOTTR or Steam started too late. Please try again now.
+	  Runwait, taskkill /im SOTTR.exe /f, ,Hide
+	  Runwait, taskkill /im Start3D.exe /f, ,Hide		
+	  ExitApp  
    }
 
   
@@ -97,13 +97,13 @@ If !ErrorLevel
   WinWait, NVIDIA 3D Vision , , 25 ;  If the 3D Vision Photo viewer is not opened in time, the 3D cannot be activated.
 
 
-	   if ErrorLevel
-	   {
-			MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, 3D Vision Photo viewer failed to initialize as it should.
-			Runwait, taskkill /im SOTTR.exe /f, ,Hide
-	        Runwait, taskkill /im Start3D.exe /f, ,Hide			
-			ExitApp  			
-	   }
+   if ErrorLevel
+   {
+	 MsgBox,262144 , Failed to initialize 3D Vision for DX12, 3D Vision Photo viewer failed to initialize as it should.
+	 Runwait, taskkill /im SOTTR.exe /f, ,Hide
+	 Runwait, taskkill /im Start3D.exe /f, ,Hide			
+	 ExitApp  			
+   }
 
  
   WinWait, Shadow of the Tomb Raider v1.0 build
@@ -115,30 +115,25 @@ If !ErrorLevel
   
 
   
-		IfWinNotExist, Shadow of the Tomb Raider v1.0 build
-		{
-			MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, SOTTR.exe could not be started properly. Note: RTSS Custom Direct3D Support must be turned off. Please try again.
-			Runwait, taskkill /im SOTTR.exe /f, ,Hide
-			Runwait, taskkill /im Start3D.exe /f, ,Hide		
-			Runwait, taskkill /im nvstview.exe /f, ,Hide   ;3D Vision Photo viewer turn off			
-			ExitApp  			
-		}
+  IfWinNotExist, Shadow of the Tomb Raider v1.0 build
+  {
+	MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, SOTTR.exe could not be started properly. Note: RTSS Custom Direct3D Support must be turned off. Please try again.
+	Runwait, taskkill /im SOTTR.exe /f, ,Hide
+	Runwait, taskkill /im Start3D.exe /f, ,Hide		
+	Runwait, taskkill /im nvstview.exe /f, ,Hide   ;3D Vision Photo viewer turn off			
+	ExitApp  			
+  }
 
-  
-  
   WinWaitClose  ; Wait for the exact Tomb Raider window found by WinWait to be closed.
   Runwait, taskkill /im nvstview.exe /f, ,Hide   ;3D Vision Photo viewer turn off
 
   ExitApp 
-
-
 }
 else  ;If start3D.exe is started, restarting 3DLauncher.exe is prevented.
 {
 
 	IfWinExist, Shadow of the Tomb Raider v1.0 build
 	WinActivate Shadow of the Tomb Raider v1.0 build
-
 }
 
 ExitApp  
