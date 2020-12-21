@@ -46,8 +46,7 @@ If !ErrorLevel
    {
      Sleep, 8000
    }
-   
-   
+
   ;it is necessary to start the game in 2D. Disable 3D
    Run, "%prog32%\NVIDIA Corporation\3D Vision\nvstlink.exe" /disable
 
@@ -66,9 +65,7 @@ If !ErrorLevel
    }  
   
    WinWait, Shadow of the Tomb Raider v1.0 build , , 30 ;
-
-   SplashImage, Off
-   
+   SplashImage, Off   
    if ErrorLevel
    {
 	  MsgBox,262144 , Failed to initialize 3D Vision for DX12, There is a problem. SOTTR or Steam started too late. Please try again now.
@@ -76,22 +73,16 @@ If !ErrorLevel
 	  Runwait, taskkill /im Start3D.exe /f, ,Hide		
 	  ExitApp  
    }
-
-  
-  Sleep, 5000
-
-  
+  Sleep, 5000  
   Run,"QRes.exe" /r:120
   Sleep, 2000   
   
-  Run, "%prog32%\NVIDIA Corporation\3D Vision\nvstlink.exe" /enable  
-  
+  Run, "%prog32%\NVIDIA Corporation\3D Vision\nvstlink.exe" /enable    
   Sleep, 8000  
 
   Run, "%prog32%\NVIDIA Corporation\3D Vision\nvstview.exe" "leopard.jps"
   Sleep, 500
   WinWait, NVIDIA 3D Vision , , 25 ;  If the 3D Vision Photo viewer is not opened in time, the 3D cannot be activated.
-
 
    if ErrorLevel
    {
@@ -101,16 +92,13 @@ If !ErrorLevel
 	 ExitApp  			
    }
 
- 
   WinWait, Shadow of the Tomb Raider v1.0 build
   WinActivate    
   Winrestore
   
   Sleep, 5000 ; Before Photo viewer window disappears, the 3D picture must have triggered 3D Vision.
   WinHide NVIDIA 3D Vision ;To Auto hide 3D Vision Photo viewer.
-  
 
-  
   IfWinNotExist, Shadow of the Tomb Raider v1.0 build
   {
 	MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, SOTTR.exe could not be started properly. Note: RTSS Custom Direct3D Support must be turned off. Please try again.
