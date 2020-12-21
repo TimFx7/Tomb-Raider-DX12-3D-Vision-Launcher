@@ -15,18 +15,15 @@ SetTitleMatchMode, 2
 
 EnvGet, prog32, ProgramFiles(x86)
 
-
 	if !FileExist("Start3D.exe") or !FileExist("QRes.exe") or !FileExist("leopard.jps") or !FileExist("splash.jpg")
 	{
 		MsgBox,262144 ,	Failed to initialize 3D Vision for DX12, Some files may be missing. Be sure to copy the files named Start3D.exe , QRES.exe , LEOPARD.jps , SPLASH.jpg to the game folder. 
 		exitApp 
 	}
 
-
 Process,Exist, Start3D.exe
 If !ErrorLevel
 {
-      
         try
 	{
 	       Run, "Start3D.exe"
@@ -36,7 +33,6 @@ If !ErrorLevel
                MsgBox,262144 , Failed to initialize 3D Vision for DX12, Start3D.exe could not be started, file may be corrupted.
                exitApp 
 	}   
-   
 
    regwrite, REG_SZ, HKEY_CURRENT_USER\SOFTWARE\Eidos Montreal\Shadow of the Tomb Raider\Graphics, Fullscreen, 1
    regwrite, REG_SZ, HKEY_CURRENT_USER\SOFTWARE\Eidos Montreal\Shadow of the Tomb Raider\Graphics, EnableDX12, 1
