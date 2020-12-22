@@ -97,9 +97,6 @@ If !ErrorLevel
   Sleep, 5000 ; Before Photo viewer window disappears, the 3D picture must have triggered 3D Vision.
   WinHide NVIDIA 3D Vision ;To Auto hide 3D Vision Photo viewer.
 
-  WinActivate Program Manager  
-  WinWaitActive Program Manager   
-  WinActivate Shadow of the Tomb Raider v1.0 build
 
   IfWinNotExist, Shadow of the Tomb Raider v1.0 build
   {
